@@ -45,6 +45,8 @@ namespace Project_Visualisation
 
         PowerEntity startNode, endNode;
 
+        List<PowerEntity> hiddenSecondEnds = new List<PowerEntity>();
+        List<long> hiddenLines = new List<long>();
         public MainWindow()
         {           
             InitializeComponent();
@@ -905,7 +907,7 @@ namespace Project_Visualisation
             }
 
         }
-
+        
         public void ColorEntity(SolidColorBrush entityColor, Ellipse el)
         {
             foreach (var entity in Entities.Values)
@@ -1170,6 +1172,137 @@ namespace Project_Visualisation
                 }
             }
         }
+
+
+        private void Hide_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var line in LineEntities.Values)
+            {
+                foreach (var entity in Entities.Values)
+                {
+                    if ((entity.Id == line.FirstEnd) && (entity is SwitchEntity) && (((SwitchEntity)entity).Status == "Open"))
+                    {
+                        foreach (var e2 in Entities.Values)
+                        {
+                            if (e2.Id == line.SecondEnd)
+                            {
+                                //1)first way
+
+                                e2.Ellipse.Fill = Brushes.LightBlue;
+                                hiddenSecondEnds.Add(e2);
+
+                                //2)second way
+                                //  ((Canvas)GridPanel.Children[0]).Children.Remove(e2.Ellipse);
+                            }
+                        }
+
+                        //+hide line
+                        foreach (KeyValuePair<long, List<Line>> kvp in allXMLLines)
+                        {
+                            if (kvp.Key == line.Id)
+                            {
+                                foreach (Line linePart in kvp.Value)        //linija koja cini vod
+                                {
+                                    //1)first way
+                                    linePart.Stroke = Brushes.LightBlue;
+
+                                    //2)second way
+                                    //  ((Canvas)GridPanel.Children[0]).Children.Remove(linePart);
+                                    hiddenLines.Add(line.Id);
+                                }
+                                //  drawnLines.Remove(line);
+                                //  allXMLLines[line.Id].Clear();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ShowBack_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var e2 in hiddenSecondEnds)
+            {
+                foreach (var entity in Entities.Values)
+                {
+                    if (e2.Id == entity.Id)
+                    {
+                        //1)first way
+                        if (entity.GetType().Name == "SubstationEntity")
+                        {
+                            entity.Ellipse.Fill = Brushes.Red;
+                        }
+                        else if (entity.GetType().Name == "NodeEntity")
+                        {
+                            entity.Ellipse.Fill = Brushes.Green;
+                        }
+                        else if (entity.GetType().Name == "SwitchEntity")
+                        {
+                            entity.Ellipse.Fill = Brushes.Blue;
+                        }
+
+                        //2)second way
+                        //entity.Ellipse = MakeEllipseForEntity(entity);
+                        //Canvas.SetTop(entity.Ellipse, entity.Row * numberOfMiniGrids_Height - (entity.Ellipse.Height / 2));
+                        //Canvas.SetLeft(entity.Ellipse, entity.Column * numberOfMiniGrids_Width - (entity.Ellipse.Width / 2));
+                        //Canvas.SetZIndex(entity.Ellipse, 2);
+                        //((Canvas)GridPanel.Children[0]).Children.Add(entity.Ellipse);
+                    }
+                }
+            }
+            hiddenSecondEnds.Clear();
+
+            //1)first way
+            foreach (var kvp in allXMLLines)
+            {
+                foreach (var id in hiddenLines)
+                {
+                    if (kvp.Key == id)
+                    {
+                        foreach (Line linePart in kvp.Value)
+                        {
+                            linePart.Stroke = Brushes.Black;
+                        }
+                    }
+                }
+            }
+            hiddenLines.Clear();
+
+
+
+            //2)second way
+            //Line newLine;
+            //foreach (var line in LineEntities.Values)
+            //{
+            //    foreach (var id in hiddenLines)
+            //    {
+            //        if (line.Id == id)
+            //        {
+            //            Entities.TryGetValue(line.FirstEnd, out PowerEntity startNode);
+            //            Entities.TryGetValue(line.SecondEnd, out PowerEntity endNode);
+
+            //            //lista gridica = rowcolumn
+            //            List<RowColumn> rowColumn = BreadthFirstSearch(startNode, endNode);
+            //            foreach (var rc in rowColumn)
+            //            {
+            //                if (rc.Parent != null)
+            //                {
+            //                    newLine = CreateLine(line, rc);
+            //                    Canvas.SetZIndex(newLine, 0);
+            //                    ((Canvas)GridPanel.Children[0]).Children.Add(newLine);
+            //                    drawnLines.Add(line);
+            //                    allLinesXML[line.Id].Add(newLine);
+            //                    rows[rc.Row].Columns[rc.Column].Taken = true;
+            //                }
+            //            }
+
+            //        }
+            //    }
+            //}
+            //hiddenLines.Clear();
+        }
+
+
 
 
     }

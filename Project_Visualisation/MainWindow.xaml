@@ -31,6 +31,8 @@
             <Button x:Name="btnResistance" Click="Color_Line_Resistance_Click">Resistance</Button>
             <Button x:Name="btnMaterial" Click="Color_Line_Material_Click">Material</Button>
             <Button x:Name="btnSS" Click="ScreenShot_Click">ScreenShot</Button>
+            <Button x:Name="btnHideInActive" Click="Hide_Click">Hide inactive</Button>
+            <Button x:Name="btnShowInActive" Click="ShowBack_Click">Show inacitve</Button>
         </Menu>
 
     </Grid>
