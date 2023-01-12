@@ -43,6 +43,8 @@ namespace Project_Visualisation
 
         BitmapImage node, subs, switchh;
 
+        PowerEntity startNode, endNode;
+
         public MainWindow()
         {           
             InitializeComponent();
@@ -588,6 +590,7 @@ namespace Project_Visualisation
                 Y2 = rowColumn.Parent.Row * numberOfMiniGrids_Height,
                 ToolTip = lineEntity.ToString()
             };
+            line.MouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Line);
             return line;
         }
 
@@ -989,6 +992,40 @@ namespace Project_Visualisation
             }
         }
 
+        public void Right_Click_Line(object sender, RoutedEventArgs e)
+        {
+            Line line = (Line)sender;
+            long IDLine;
+            LineEntity lineEntity = new LineEntity();
+
+            foreach (KeyValuePair<long, List<Line>> kp in allXMLLines)
+            {
+                if (kp.Value.Contains(line))
+                {
+                    IDLine = kp.Key;
+                    lineEntity = LineEntities[IDLine];
+
+                }
+            }
+
+            //return the previously clicked ones to the previous color
+            if (startNode != null && endNode != null)
+            {
+                startNode.Ellipse.Fill = startNode.PreviousColor;
+                endNode.Ellipse.Fill = endNode.PreviousColor;
+            }
+
+            //coloring entities whose line is clicked
+            startNode = Entities[lineEntity.FirstEnd];
+            endNode = Entities[lineEntity.SecondEnd];
+
+            startNode.PreviousColor = startNode.Ellipse.Fill;
+            endNode.PreviousColor = endNode.Ellipse.Fill;
+
+            startNode.Ellipse.Fill = Brushes.Purple;
+            endNode.Ellipse.Fill = Brushes.Purple;
+
+        }
 
     }
 }

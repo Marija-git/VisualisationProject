@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Project_Visualisation.Entities
@@ -19,6 +20,7 @@ namespace Project_Visualisation.Entities
         public int Connections { get; set; }
         public Ellipse Ellipse { get; set; }
         public Image Image { get; set; }
+        public Brush PreviousColor { get; set; }
 
     }
 }
