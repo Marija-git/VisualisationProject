@@ -1150,6 +1150,27 @@ namespace Project_Visualisation
 
         }
 
+        private void ScreenShot_Click(object sender, RoutedEventArgs e)
+        {
+            double screenLeft = SystemParameters.VirtualScreenLeft;
+            double screenTop = SystemParameters.VirtualScreenTop;
+            double screenWidth = SystemParameters.VirtualScreenWidth;
+            double screenHeight = SystemParameters.VirtualScreenHeight;
+
+            using (System.Drawing.Bitmap bmp = new System.Drawing.Bitmap((int)screenWidth,
+                (int)screenHeight))
+            {
+                using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(bmp))
+                {
+                    String filename = "ScreenCapture-" + DateTime.Now.ToString("ddMMyyyy-hhmmss") + ".png";
+                    Opacity = .0;
+                    g.CopyFromScreen((int)screenLeft, (int)screenTop, 0, 0, bmp.Size);
+                    bmp.Save("C:\\Screenshots\\" + filename);
+                    Opacity = 1;
+                }
+            }
+        }
+
 
     }
 }

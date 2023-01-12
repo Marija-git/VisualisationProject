@@ -30,6 +30,7 @@
             <Button x:Name="btnConnection" Click="ColorEntity_Connection_Click">Connections</Button>
             <Button x:Name="btnResistance" Click="Color_Line_Resistance_Click">Resistance</Button>
             <Button x:Name="btnMaterial" Click="Color_Line_Material_Click">Material</Button>
+            <Button x:Name="btnSS" Click="ScreenShot_Click">ScreenShot</Button>
         </Menu>
 
     </Grid>
