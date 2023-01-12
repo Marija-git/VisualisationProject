@@ -919,6 +919,75 @@ namespace Project_Visualisation
             }
         }
 
+        private void ColorEntity_Connection_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var entity in Entities.Values)
+            {
+                if (entity.Connections >= 0 && entity.Connections < 3)
+                {
+                    if (entity.GetType().Name.Equals("SubstationEntity") && entity.Ellipse.Fill == Brushes.IndianRed)
+                    {
+                        entity.Ellipse.Fill = Brushes.Red;
+                    }
+                    else if (entity.GetType().Name.Equals("NodeEntity") && entity.Ellipse.Fill == Brushes.IndianRed)
+                    {
+                        entity.Ellipse.Fill = Brushes.Green;
+                    }
+                    else if (entity.GetType().Name.Equals("SwitchEntity") && entity.Ellipse.Fill == Brushes.IndianRed)
+                    {
+                        entity.Ellipse.Fill = Brushes.Blue;
+                    }
+                    else
+                    {
+                        entity.Ellipse.Fill = Brushes.IndianRed;
+                    }
+
+
+                }
+                else if (entity.Connections >= 3 && entity.Connections < 5)
+                {
+                    if (entity.GetType().Name.Equals("SubstationEntity") && entity.Ellipse.Fill == Brushes.Red)
+                    {
+                        entity.Ellipse.Fill = Brushes.Red;
+                    }
+                    else if (entity.GetType().Name.Equals("NodeEntity") && entity.Ellipse.Fill == Brushes.Red)
+                    {
+                        entity.Ellipse.Fill = Brushes.Green;
+                    }
+                    else if (entity.GetType().Name.Equals("SwitchEntity") && entity.Ellipse.Fill == Brushes.Red)
+                    {
+                        entity.Ellipse.Fill = Brushes.Blue;
+                    }
+                    else
+                    {
+                        entity.Ellipse.Fill = Brushes.Red;
+                    }
+                }
+                else if (entity.Connections > 5)
+                {
+                    if (entity.GetType().Name.Equals("SubstationEntity") && entity.Ellipse.Fill == Brushes.DarkRed)
+                    {
+                        entity.Ellipse.Fill = Brushes.Red;
+                    }
+                    else if (entity.GetType().Name.Equals("NodeEntity") && entity.Ellipse.Fill == Brushes.DarkRed)
+                    {
+                        entity.Ellipse.Fill = Brushes.Green;
+                    }
+                    else if (entity.GetType().Name.Equals("SwitchEntity") && entity.Ellipse.Fill == Brushes.DarkRed)
+                    {
+                        entity.Ellipse.Fill = Brushes.Blue;
+                    }
+                    else
+                    {
+                        entity.Ellipse.Fill = Brushes.DarkRed;
+                    }
+                }
+                else
+                {
+                    //nothing
+                }
+            }
+        }
 
 
     }

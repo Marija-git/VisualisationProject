@@ -27,6 +27,7 @@
 
         <Menu Background="White" Name="MenuButtons" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto">
             <Button x:Name="btnLoadModel" Click="Load_entities_Click">Load entities</Button>
+            <Button x:Name="btnConnection" Click="ColorEntity_Connection_Click">Connections</Button>
         </Menu>
 
     </Grid>
