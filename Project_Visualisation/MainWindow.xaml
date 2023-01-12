@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Visualisation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="649.2" Width="916.8">
     <Grid>
-        
+
+        <Slider x:Name="slider" Minimum="1" Maximum="50" Value="1" Margin="40,70,82.4,520"  IsEnabled="False" />
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="1,87,22.8,6.8">
+        <Grid  Name="GridPanel" Margin="38,44,55.8,25.8" Height="649.2" Width="916.8">
+
+            <Canvas Name="canvasDisplay" Cursor="Pen" Background="LightBlue"  Margin="6,2,1.8,-4.8"
+                MouseRightButtonDown="Canvas_MouseRightButtonDown"
+                MouseLeftButtonDown="Canvas_MouseLeftButtonDown" />
+
+            <Grid.LayoutTransform>
+                <ScaleTransform   
+                            ScaleX="{Binding ElementName=slider, Path=Value}"
+                            ScaleY="{Binding ElementName=slider, Path=Value}"/>
+            </Grid.LayoutTransform>
+
+        </Grid>
+        </ScrollViewer>
+
+        <Menu Background="White" Name="MenuButtons" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto">
+            <Button x:Name="btnLoadModel" Click="Load_entities_Click">Load entities</Button>
+        </Menu>
+
     </Grid>
 </Window>

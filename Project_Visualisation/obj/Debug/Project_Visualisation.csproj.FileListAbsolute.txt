@@ -1,0 +1,15 @@
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\bin\Debug\Project_Visualisation.exe.config
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\bin\Debug\Project_Visualisation.exe
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\bin\Debug\Project_Visualisation.pdb
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.csprojAssemblyReference.cache
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\MainWindow.g.cs
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\App.g.cs
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation_MarkupCompile.cache
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation_MarkupCompile.lref
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\MainWindow.baml
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.g.resources
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.Properties.Resources.resources
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.csproj.GenerateResource.cache
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.csproj.CoreCompileInputs.cache
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.exe
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.pdb

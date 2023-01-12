@@ -55,6 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\LineEntity.cs" />
+    <Compile Include="Entities\NodeEntity.cs" />
+    <Compile Include="Entities\PowerEntity.cs" />
+    <Compile Include="Entities\SubstationEntity.cs" />
+    <Compile Include="Entities\SwitchEntity.cs" />
+    <Compile Include="RowColumns\Column.cs" />
+    <Compile Include="RowColumns\Row.cs" />
+    <Compile Include="RowColumns\RowColumn.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,5 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
