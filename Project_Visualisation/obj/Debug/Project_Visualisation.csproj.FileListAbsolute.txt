@@ -13,3 +13,5 @@ C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visua
 C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.csproj.CoreCompileInputs.cache
 C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.exe
 C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.pdb
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\EntityWindow.g.cs
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\EntityWindow.baml

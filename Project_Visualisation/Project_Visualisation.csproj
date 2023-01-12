@@ -60,9 +60,16 @@
     <Compile Include="Entities\PowerEntity.cs" />
     <Compile Include="Entities\SubstationEntity.cs" />
     <Compile Include="Entities\SwitchEntity.cs" />
+    <Compile Include="EntityWindow.xaml.cs">
+      <DependentUpon>EntityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RowColumns\Column.cs" />
     <Compile Include="RowColumns\Row.cs" />
     <Compile Include="RowColumns\RowColumn.cs" />
+    <Page Include="EntityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +109,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\image_substitution.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\node.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\switch.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Shapes;
 
 namespace Project_Visualisation.Entities
@@ -17,7 +18,7 @@ namespace Project_Visualisation.Entities
         public int Column { get; set; }
         public int Connections { get; set; }
         public Ellipse Ellipse { get; set; }
-     
+        public Image Image { get; set; }
 
     }
 }

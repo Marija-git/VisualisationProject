@@ -41,6 +41,8 @@ namespace Project_Visualisation
 
         public int numberOfRows, numberOfColumns;
 
+        BitmapImage node, subs, switchh;
+
         public MainWindow()
         {           
             InitializeComponent();
@@ -381,8 +383,8 @@ namespace Project_Visualisation
            {
                 ellipse.Fill = Brushes.Blue;
            }
-            
-           return ellipse;
+            ellipse.MouseLeftButtonDown += new MouseButtonEventHandler(Left_Click_Entity);
+            return ellipse;
         }
 
         private Tuple<int, int> FindPositionForEntitiesInGrid(PowerEntity powerEntity)
@@ -797,6 +799,108 @@ namespace Project_Visualisation
 
         #endregion
 
+
+        public void DeleteEllipse_ShowImages()
+        {
+            LoadImages();
+            foreach (var entity in Entities.Values)
+            {
+                if (entity.Ellipse != null)
+                {
+                    ((Canvas)GridPanel.Children[0]).Children.Remove(entity.Ellipse);
+
+                    entity.Image = MakeImageForEntities(entity);
+
+                    Canvas.SetTop(entity.Image, entity.Row * numberOfMiniGrids_Height - (entity.Image.Height / 2));
+                    Canvas.SetLeft(entity.Image, entity.Column * numberOfMiniGrids_Width - (entity.Image.Width / 2));
+                    Canvas.SetZIndex(entity.Image, 2);
+
+                    ((Canvas)GridPanel.Children[0]).Children.Add(entity.Image);
+
+                }
+            }
+        }
+
+        private Image MakeImageForEntities(PowerEntity entity)
+        {
+            Image image = new Image
+            {
+                Width = 6,
+                Height = 6,
+                ToolTip = entity.ToString(),
+            };
+            if (entity.GetType().Name == "SubstationEntity")
+            {
+                image.Source = subs;
+            }
+            else if (entity.GetType().Name == "NodeEntity")
+            {
+                image.Source = node;
+            }
+            else if (entity.GetType().Name == "SwitchEntity")
+            {
+                image.Source = switchh;
+            }
+            image.MouseLeftButtonDown += new MouseButtonEventHandler(Left_Click_Entity);
+            return image;
+        }
+
+        public void Left_Click_Entity(object sender, RoutedEventArgs e)
+        {
+            if (sender is Image)
+            {
+                EntityWindow ew = new EntityWindow((Image)sender);
+                ew.ShowDialog();
+            }
+            else
+            {
+                EntityWindow ew1 = new EntityWindow((Ellipse)sender);
+                ew1.ShowDialog();
+            }
+
+        }
+
+        private void LoadImages()
+        {
+            //SUBSTITUTUON
+            subs = new BitmapImage();
+            subs.BeginInit();
+            subs.UriSource = new Uri(@"C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\Images\image_substitution.png"); 
+            //  node.UriSource = new Uri("https://play-lh.googleusercontent.com/ZyWNGIfzUyoajtFcD7NhMksHEZh37f-MkHVGr5Yfefa-IX7yj9SMfI82Z7a2wpdKCA=w240-h480-rw");
+            subs.EndInit();
+
+            //NODES
+            node = new BitmapImage();
+            node.BeginInit();
+            node.UriSource = new Uri(@"C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\Images\node.png");
+            node.EndInit();
+
+            //SWITCH
+            switchh = new BitmapImage();
+            switchh.BeginInit();
+            switchh.UriSource = new Uri(@"C:\Users\Marija\Desktop\PROJEKAT materijali\pz 1\PROJEKAT\PROJEKAT\Images\switch.png");
+            switchh.EndInit();
+        }
+
+        public void DeleteImage_BackToEllipse()
+        {
+            foreach (var entity in Entities.Values)
+            {
+                if (entity.Image != null)
+                {
+                    ((Canvas)GridPanel.Children[0]).Children.Remove(entity.Image);
+
+                    entity.Ellipse = MakeEllipseForEntity(entity);
+
+                    Canvas.SetTop(entity.Ellipse, entity.Row * numberOfMiniGrids_Height - (entity.Ellipse.Height / 2));
+                    Canvas.SetLeft(entity.Ellipse, entity.Column * numberOfMiniGrids_Width - (entity.Ellipse.Width / 2));
+                    Canvas.SetZIndex(entity.Ellipse, 2);
+
+                    ((Canvas)GridPanel.Children[0]).Children.Add(entity.Ellipse);
+                }
+            }
+
+        }
 
     }
 }
