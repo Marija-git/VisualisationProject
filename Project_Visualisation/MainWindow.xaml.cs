@@ -847,6 +847,7 @@ namespace Project_Visualisation
             image.MouseLeftButtonDown += new MouseButtonEventHandler(Left_Click_Entity);
             return image;
         }
+      
 
         public void Left_Click_Entity(object sender, RoutedEventArgs e)
         {
@@ -1026,6 +1027,129 @@ namespace Project_Visualisation
             endNode.Ellipse.Fill = Brushes.Purple;
 
         }
+
+        private void Color_Line_Resistance_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var line in LineEntities.Values)
+            {
+                foreach (var el in allXMLLines)
+                {
+                    if (line.Id == el.Key)
+                    {
+                        foreach (Line lineOnCanvas in allXMLLines[line.Id])
+                        {
+                            if (line.Resistance < 1)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Red;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+
+                            }
+                            else if (line.Resistance > 1 && line.Resistance <= 2)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Orange;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+                            }
+                            else if (line.Resistance > 2)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Yellow;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+                            }
+                            else
+                            {
+                                //nothing
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Color_Line_Material_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var line in LineEntities.Values)
+            {
+                foreach (var el in allXMLLines)
+                {
+                    if (line.Id == el.Key)
+                    {
+                        foreach (Line lineOnCanvas in allXMLLines[line.Id])
+                        {
+                            if (line.CondMaterial == ConductorMaterial.Copper)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Brown;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+
+                            }
+                            else if (line.CondMaterial == ConductorMaterial.Steel)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.DarkGray;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+                            }
+                            else if (line.CondMaterial == ConductorMaterial.Acsr)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.DarkMagenta;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+                            }
+                            else if (line.CondMaterial == ConductorMaterial.Other)
+                            {
+                                if (lineOnCanvas.Stroke == Brushes.Black)
+                                {
+                                    lineOnCanvas.Stroke = Brushes.DarkGreen;
+                                }
+                                else
+                                {
+                                    lineOnCanvas.Stroke = Brushes.Black;
+                                }
+                            }
+                            else
+                            {
+                                //nothing
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+
 
     }
 }

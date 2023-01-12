@@ -28,6 +28,8 @@
         <Menu Background="White" Name="MenuButtons" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto">
             <Button x:Name="btnLoadModel" Click="Load_entities_Click">Load entities</Button>
             <Button x:Name="btnConnection" Click="ColorEntity_Connection_Click">Connections</Button>
+            <Button x:Name="btnResistance" Click="Color_Line_Resistance_Click">Resistance</Button>
+            <Button x:Name="btnMaterial" Click="Color_Line_Material_Click">Material</Button>
         </Menu>
 
     </Grid>
