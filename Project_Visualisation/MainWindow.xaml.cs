@@ -902,5 +902,24 @@ namespace Project_Visualisation
 
         }
 
+        public void ColorEntity(SolidColorBrush entityColor, Ellipse el)
+        {
+            foreach (var entity in Entities.Values)
+            {
+                if (entity.Ellipse == el)
+                {
+                    foreach (var e2 in Entities.Values)
+                    {
+                        if (e2.GetType() == entity.GetType())
+                        {
+                            e2.Ellipse.Fill = entityColor;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

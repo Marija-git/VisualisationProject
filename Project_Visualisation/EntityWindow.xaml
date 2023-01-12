@@ -5,13 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Visualisation"
         mc:Ignorable="d"
-        Title="EntityWindow" Height="450" Width="400">
+        Title="EntityWindow" Height="450" Width="400"  Loaded="Colors_Loaded">
     <Grid  Margin="0,0,-5.4,4">
 
         <Button x:Name="btnChangeToImages" Click="ChangeToImages_Click" HorizontalAlignment="Left" Margin="128,147,-216,0" VerticalAlignment="Top" Width="138" Height="50" RenderTransformOrigin="0.5,0.5" >View as image</Button>
         <Button x:Name="btnCancel" Click="Cancel_Click" HorizontalAlignment="Left" Margin="22,357,-68,0" VerticalAlignment="Top" Width="96" Height="45" RenderTransformOrigin="0.5,0.5" >Cancel</Button>
         <Button x:Name="btnChangeToEllipse" Click="ChangeToEllipse_Click" HorizontalAlignment="Left" Margin="123,214,-216,0" VerticalAlignment="Top" Width="143" Height="48" RenderTransformOrigin="0.5,0.5" >View as ellipse</Button>
 
+        <Label x:Name="EntityColor" Content="Color entity:" HorizontalAlignment="Left" Margin="18,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.663,-2.127"/>
+        <ComboBox x:Name="CB_entityColor" HorizontalAlignment="Left" Margin="202,53,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="CBEntityColor">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Rectangle Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:Name="btnColor" Click="ColorEntity_Click" HorizontalAlignment="Left" Margin="266,89,0,0" VerticalAlignment="Top" Width="88" Height="23" >Choose a color</Button>
 
     </Grid>
 </Window>

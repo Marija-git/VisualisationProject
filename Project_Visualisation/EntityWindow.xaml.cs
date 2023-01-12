@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace Project_Visualisation
     {
         Ellipse el;
         Image image;
+        private SolidColorBrush entitityColor;
         public EntityWindow()
         {
             InitializeComponent();
@@ -53,5 +55,26 @@ namespace Project_Visualisation
             ((MainWindow)Application.Current.MainWindow).DeleteImage_BackToEllipse();
             this.Close();
         }
+
+        private void ColorEntity_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).ColorEntity(entitityColor, el);
+            this.Close();
+        }
+
+        #region BOJENJE
+        private void CBEntityColor(object sender, SelectionChangedEventArgs e)
+        {
+
+            Color colorEntity = (Color)(CB_entityColor.SelectedItem as PropertyInfo).GetValue(1, null);
+            entitityColor = new SolidColorBrush(colorEntity);
+        }
+
+        private void Colors_Loaded(object sender, RoutedEventArgs e)
+        {
+            CB_entityColor.ItemsSource = typeof(Colors).GetProperties();
+        }
+        #endregion
+
     }
 }
