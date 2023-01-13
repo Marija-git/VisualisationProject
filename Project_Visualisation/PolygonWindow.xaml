@@ -1,0 +1,68 @@
+﻿<Window x:Class="Project_Visualisation.PolygonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Visualisation"
+        mc:Ignorable="d"
+        Title="PolygonWindow" Height="310" Width="320" Loaded="Colors_Loaded">
+    <Grid Margin="-1,0,-41,-42">
+
+        <Label x:Name="strokeThickness" Content="StrokeThickness:" HorizontalAlignment="Left" Margin="4,15,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_strokeThicknesse" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" Margin="135,15,0,0"/>
+
+        <Label x:Name="StrokeColor" Content="Stroke Color:" HorizontalAlignment="Left" Margin="5,50,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CB_StrokeColor" HorizontalAlignment="Left" Margin="135,50,0,0" VerticalAlignment="Top" Width="153" SelectionChanged="CBStrokeColor" Height="25">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel  Orientation="Horizontal">
+
+                        <Rectangle  Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label x:Name="PolygonColor" Content="Choose polygon color:" HorizontalAlignment="Left" Margin="5,85,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CB_PolygonColor" HorizontalAlignment="Left" Margin="135,85,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="CBPolygonColor" Height="23">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Rectangle Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label x:Name="text" Content="Text: " HorizontalAlignment="Left" Margin="5,125,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_text" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="124,115,0,0"/>
+
+        <Label x:Name="TextColor" Content="Text color:" HorizontalAlignment="Left" Margin="7,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.456,-0.411"/>
+        <ComboBox x:Name="CB_TextColor" HorizontalAlignment="Left" Margin="122,173,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="CBTextColor">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Rectangle Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label x:Name="Opacity_Label" Content="Opacity [0-1]:" HorizontalAlignment="Left" Margin="4,206,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Opacity_TB" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="122,209,0,0"/>
+
+        <Button x:Name="btnCancel" Click="Cancel_Click" HorizontalAlignment="Left" Margin="163,250,0,0" VerticalAlignment="Top" Width="50" >Cancel</Button>
+        <Button x:Name="btnDraw" Click="Draw_Click" HorizontalAlignment="Left" Margin="231,249,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.609,4.617" >Draw</Button>
+
+
+    </Grid>
+</Window>

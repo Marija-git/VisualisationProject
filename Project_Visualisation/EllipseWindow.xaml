@@ -1,0 +1,73 @@
+﻿<Window x:Class="Project_Visualisation.EllipseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Visualisation"
+        mc:Ignorable="d"
+        Title="EllipseWindow" Height="400" Width="400" Loaded="Colors_Loaded">
+    <Grid>
+
+        <Label x:Name="height" Content="Height:" HorizontalAlignment="Left" Margin="5,13,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBheight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="135,13,0,0"/>
+
+        <Label x:Name="width" Content="Width:" HorizontalAlignment="Left" Margin="5,40,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_width" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="135,41,0,0"/>
+
+        <Label x:Name="strokethickness" Content="Strokethickness:" HorizontalAlignment="Left" Margin="4,66,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_strokethickness" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="135,69,0,0"/>
+
+        <Label x:Name="StrokeColor" Content="Stroke Color:" HorizontalAlignment="Left" Margin="5,90,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CB_StrokeColor" HorizontalAlignment="Left" Margin="135,96,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="CBStrokeColor">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel  Orientation="Horizontal">
+
+                        <Rectangle  Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label x:Name="EllipseColor" Content="Choose ellipse color:" HorizontalAlignment="Left" Margin="5,118,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CB_EllipseColora" HorizontalAlignment="Left" Margin="135,123,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="CBEllipseColor">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Rectangle Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label x:Name="text" Content="Text: " HorizontalAlignment="Left" Margin="5,150,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_text" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="135,149,0,0"/>
+
+        <Label x:Name="TextColor" Content="Choose text color:" HorizontalAlignment="Left" Margin="5,215,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CB_TextColor" HorizontalAlignment="Left" Margin="135,215,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="CBTextColor">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Rectangle Height="10" Width="15" Fill="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label x:Name="Opacity_Label" Content="Opacity [0-1]:" HorizontalAlignment="Left" Margin="7,268,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Opacity_TB" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Margin="135,269,0,0"/>
+
+        <Button x:Name="btnCancel" Click="Cancel_Click" HorizontalAlignment="Left" Margin="252,327,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.996,2.568" >Cancel</Button>
+        <Button x:Name="btnDraw" Click="Draw_Click" HorizontalAlignment="Left" Margin="319,327,0,0" VerticalAlignment="Top" Width="50" >Draw</Button>
+
+
+    </Grid>
+</Window>

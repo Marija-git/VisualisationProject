@@ -33,6 +33,12 @@
             <Button x:Name="btnSS" Click="ScreenShot_Click">ScreenShot</Button>
             <Button x:Name="btnHideInActive" Click="Hide_Click">Hide inactive</Button>
             <Button x:Name="btnShowInActive" Click="ShowBack_Click">Show inacitve</Button>
+            <Button x:Name="btnEllipse" Click="Ellipse_Click">Ellipse</Button>
+            <Button x:Name="btnPolygon" Click="Polygon_Click">Polygon</Button>
+            <Button x:Name="btnAddText" Click="AddText_Click">Add Text</Button>
+            <Button x:Name="btnUndo" Click="Undo_Click">Undo</Button>
+            <Button x:Name="btnClear" Click="Clear_Click">Clear</Button>
+            <Button x:Name="btnRedo" Click="Redo_Click">Redo</Button>
         </Menu>
 
     </Grid>

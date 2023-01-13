@@ -15,3 +15,9 @@ C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visua
 C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\Project_Visualisation.pdb
 C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\EntityWindow.g.cs
 C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\EntityWindow.baml
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\EllipseWindow.g.cs
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\EllipseWindow.baml
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\PolygonWindow.g.cs
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\PolygonWindow.baml
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\AddTextWindow.g.cs
+C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\obj\Debug\AddTextWindow.baml

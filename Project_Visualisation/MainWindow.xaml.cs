@@ -23,6 +23,27 @@ namespace Project_Visualisation
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region ELLIPSE variables
+        private static Point position;
+        public static Ellipse ellipseObj;
+        public static Ellipse changedEllipse;
+        #endregion
+
+        #region POLYGON variables
+        public static List<Point> PolygonPoints;
+        public static Polygon polygonObj;
+        public static Polygon changedPolygon;
+        #endregion
+
+        public static TextBlock tbObj;
+
+        #region undo redo clear
+        public static List<UIElement> UndoObjects;
+        public static List<UIElement> listOfSllDrawnObjectsOnCanvas;
+        public bool ClearDone;
+        #endregion
+
+        #region MODEL variables
         private SolidColorBrush btnColor;
         public double numberOfMiniGrids_Height;           //number of mini grids along the Y axis
         public double numberOfMiniGrids_Width;           //numebr of mini grids along the X axis
@@ -47,6 +68,8 @@ namespace Project_Visualisation
 
         List<PowerEntity> hiddenSecondEnds = new List<PowerEntity>();
         List<long> hiddenLines = new List<long>();
+
+        #endregion
         public MainWindow()
         {           
             InitializeComponent();
@@ -59,20 +82,187 @@ namespace Project_Visualisation
 
             numberOfRows = 100;
             numberOfColumns = 100;
+
+            UndoObjects = new List<UIElement>();
+            listOfSllDrawnObjectsOnCanvas = new List<UIElement>();
+            PolygonPoints = new List<Point>();
+        }
+
+        #region ELLIPSE,POLYGON,TEXT,UNDO,REDO,CLEAR
+        private void Ellipse_Click(object sender, RoutedEventArgs e)
+        {
+            btnEllipse.Background = btnColor;
+            btnPolygon.Background = null;
+            btnUndo.Background = null;
+            btnClear.Background = null;
+            btnRedo.Background = null;
+            btnAddText.Background = null;
+            if (btnEllipse != sender)
+            {
+                btnEllipse.Background = null;
+            }
+
+        }
+        private void Polygon_Click(object sender, RoutedEventArgs e)
+        {
+            btnPolygon.Background = btnColor;
+            btnEllipse.Background = null;
+            btnUndo.Background = null;
+            btnClear.Background = null;
+            btnRedo.Background = null;
+            btnAddText.Background = null;
+            if (btnPolygon != sender)
+            {
+                btnPolygon.Background = null;
+            }
+        }
+
+        private void AddText_Click(object sender, RoutedEventArgs e)
+        {
+            btnAddText.Background = btnColor;
+            btnEllipse.Background = null;
+            btnPolygon.Background = null;
+            btnUndo.Background = null;
+            btnClear.Background = null;
+            btnRedo.Background = null;
+            if (btnAddText != sender)
+            {
+                btnAddText.Background = null;
+            }
+
         }
 
         private void Canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //window for ellipse
+            if (btnEllipse.Background == btnColor)
+            {
+                position = Mouse.GetPosition(canvasDisplay);
+                EllipseWindow w1 = new EllipseWindow(btnEllipse, position);
+                w1.ShowDialog();
+
+                if (ellipseObj != null)
+                {
+                    ellipseObj.MouseLeftButtonDown += left_click_on_existed_ellipse;
+                    canvasDisplay.Children.Add(ellipseObj);
+
+                    //undo,redo,clear
+                    listOfSllDrawnObjectsOnCanvas.Add(ellipseObj);
+                    UndoObjects.Clear();
+                }
+
+                ellipseObj = null;
+                btnEllipse.Background = null;
+            }
+            //polygon window will open by left click on canvas , collect points here
+            else if (btnPolygon.Background == btnColor)
+            {
+                position = Mouse.GetPosition(canvasDisplay);
+                PolygonPoints.Add(position);
+            }
+            else if (btnAddText.Background == btnColor)
+            {
+                position = Mouse.GetPosition(canvasDisplay);
+                AddTextWindow w3 = new AddTextWindow(btnAddText, position);
+                w3.ShowDialog();
+
+                if (tbObj != null)
+                {
+                    tbObj.MouseLeftButtonDown += left_click_on_existed_textBlock;
+                    canvasDisplay.Children.Add(tbObj);
+
+                    //undo,redo,clear
+                    listOfSllDrawnObjectsOnCanvas.Add(tbObj);
+                    UndoObjects.Clear();
+                }
+
+                tbObj = null;
+                btnAddText.Background = null;
+
+            }
+        }
+        public void left_click_on_existed_ellipse(object sender, MouseButtonEventArgs e)
+        {
+
+            EllipseWindow w1 = new EllipseWindow((Ellipse)sender);
+            w1.ChangeEllipse();
+            w1.ShowDialog();
+            for (int i = 0; i < canvasDisplay.Children.Count; i++)
+            {
+                if ((Ellipse)sender == canvasDisplay.Children[i])
+                {
+                    canvasDisplay.Children[i] = changedEllipse;
+                }
+
+            }
+            foreach (UIElement element in canvasDisplay.Children)
+            {
+                if (element is TextBlock)
+                {
+                    w1.ChangeText(element);
+                }
+            }
 
         }
 
+        public void left_click_on_existed_polygon(object sender, MouseButtonEventArgs e)
+        {
+            PolygonWindow w2 = new PolygonWindow((Polygon)sender);
+            w2.ChangePolygon();
+            w2.ShowDialog();
+            for (int i = 0; i < canvasDisplay.Children.Count; i++)
+            {
+                if ((Polygon)sender == canvasDisplay.Children[i])
+                {
+                    canvasDisplay.Children[i] = changedPolygon;
+                }
+            }
+            foreach (UIElement element in canvasDisplay.Children)
+            {
+                if (element is TextBlock)
+                {
+                    w2.ChangeText(element);
+                }
+            }
+        }
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (PolygonPoints.Count > 0)
+            {
+                PolygonWindow w2 = new PolygonWindow(btnPolygon, PolygonPoints);
+                w2.ShowDialog();
+                if (polygonObj != null)
+                {
+                    polygonObj.MouseLeftButtonDown += left_click_on_existed_polygon;
+                    canvasDisplay.Children.Add(polygonObj);
 
+                    //undo,redo,clear
+                    listOfSllDrawnObjectsOnCanvas.Add(polygonObj);
+                    UndoObjects.Clear();
+                }
+
+                PolygonPoints.Clear();
+                polygonObj = null;
+                btnPolygon.Background = null;
+            }
+        }
+        public void left_click_on_existed_textBlock(object sender, MouseButtonEventArgs e)
+        {
+            AddTextWindow w3 = new AddTextWindow((TextBlock)sender);
+            w3.ShowDialog();
+            foreach (UIElement element in canvasDisplay.Children)
+            {
+                if (element is TextBlock && ((TextBlock)element).Name == ((TextBlock)sender).Name)
+                {
+                    w3.ChangeText(element);
+                }
+            }
         }
 
         private void Load_entities_Click(object sender, RoutedEventArgs e)
         {
+            canvasDisplay.Children.Clear();
+
             btnLoadModel.Background = btnColor;
             if(btnLoadModel != sender)
             {
@@ -87,6 +277,73 @@ namespace Project_Visualisation
             LoadLineEntitiesIntoGrids();
 
         }
+
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            btnUndo.Background = btnColor;
+            btnEllipse.Background = null;
+            btnPolygon.Background = null;
+            btnClear.Background = null;
+            btnRedo.Background = null;
+            if (btnUndo != sender)
+            {
+                btnUndo.Background = null;
+            }
+            if (ClearDone == true)
+            // if(canvasDisplay.Children.Count == 0) //uradjen clear
+            {
+                foreach (UIElement element in UndoObjects)
+                {
+                    canvasDisplay.Children.Add(element);
+                }
+                UndoObjects.Clear();
+                ClearDone = false;
+            }
+
+            else if (canvasDisplay.Children.Count > 0)
+            {
+                UndoObjects.Add(canvasDisplay.Children[canvasDisplay.Children.Count - 1]);
+                canvasDisplay.Children.RemoveAt(canvasDisplay.Children.Count - 1);
+            }
+
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            btnClear.Background = btnColor;
+            btnEllipse.Background = null;
+            btnPolygon.Background = null;
+            btnUndo.Background = null;
+            btnRedo.Background = null;
+            if (btnUndo != sender)
+            {
+                btnUndo.Background = null;
+            }
+
+            foreach (UIElement element in listOfSllDrawnObjectsOnCanvas)
+            {
+                //dodajem nacrtan oblik u listu za undo da bih mogla kasnije iz nje da vratim
+                UndoObjects.Add(element);
+                canvasDisplay.Children.Remove(element);
+            }
+            ClearDone = true;
+        }
+
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+            btnRedo.Background = btnColor;
+            btnEllipse.Background = null;
+            btnPolygon.Background = null;
+            btnUndo.Background = null;
+            btnClear.Background = null;
+
+            if (UndoObjects.Count > 0)
+            {
+                canvasDisplay.Children.Add(UndoObjects[UndoObjects.Count - 1]);
+                UndoObjects.RemoveAt(UndoObjects.Count - 1);
+            }
+        }
+        #endregion
 
         #region GRID
         //define number of rows and columns in grid
@@ -804,6 +1061,7 @@ namespace Project_Visualisation
 
         #endregion
 
+        #region ADDITIONAL TASKS
 
         public void DeleteEllipse_ShowImages()
         {
@@ -924,6 +1182,8 @@ namespace Project_Visualisation
                 }
             }
         }
+
+        
 
         private void ColorEntity_Connection_Click(object sender, RoutedEventArgs e)
         {
@@ -1302,7 +1562,7 @@ namespace Project_Visualisation
             //hiddenLines.Clear();
         }
 
-
+        #endregion
 
 
     }

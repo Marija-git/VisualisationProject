@@ -57,6 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddTextWindow.xaml.cs">
+      <DependentUpon>AddTextWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EllipseWindow.xaml.cs">
+      <DependentUpon>EllipseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\LineEntity.cs" />
     <Compile Include="Entities\NodeEntity.cs" />
     <Compile Include="Entities\PowerEntity.cs" />
@@ -65,9 +71,20 @@
     <Compile Include="EntityWindow.xaml.cs">
       <DependentUpon>EntityWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PolygonWindow.xaml.cs">
+      <DependentUpon>PolygonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RowColumns\Column.cs" />
     <Compile Include="RowColumns\Row.cs" />
     <Compile Include="RowColumns\RowColumn.cs" />
+    <Page Include="AddTextWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EllipseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EntityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +101,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PolygonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
