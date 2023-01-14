@@ -1142,7 +1142,7 @@ namespace Project_Visualisation
             //SWITCH
             switchh = new BitmapImage();
             switchh.BeginInit();
-            switchh.UriSource = new Uri(@"C:\Users\Marija\Desktop\PROJEKAT materijali\pz 1\PROJEKAT\PROJEKAT\Images\switch.png");
+            switchh.UriSource = new Uri(@"C:\Users\Marija\Desktop\VisualisationProject\Project_Visualisation\Project_Visualisation\Images\switch.png");
             switchh.EndInit();
         }
 
